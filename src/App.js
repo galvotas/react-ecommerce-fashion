@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Homepage } from "./pages/Homepage";
+import { Productspage } from "./pages/Productspage";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { SingleProductPage } from "./pages/SingleProductPage";
+
+const outerTheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#111",
+    },
+    secondary: {
+      main: "#7cb342",
+    },
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={outerTheme}>
+      <Router>
+        <Route path="/" component={Homepage} exact />
+        <Route path="/products" component={Productspage} exact />
+        <Route
+          path="/products/product/:id"
+          component={SingleProductPage}
+          exact
+        />
+      </Router>
+    </ThemeProvider>
   );
 }
 
