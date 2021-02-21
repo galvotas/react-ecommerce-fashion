@@ -11,10 +11,8 @@ export const ResultsWrapper = () => {
   const {
     state: { products },
   } = useProducts();
-  const { state } = useProducts();
 
   const showSingleProduct = (pr, e) => {
-    console.log(e.target);
     const b =
       e.target.classList.contains("MuiButton-label") ||
       e.target.classList.contains("MuiCardActions-root") ||

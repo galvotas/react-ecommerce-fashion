@@ -15,11 +15,10 @@ export const ResultsTopSection = () => {
     <>
       <Grid container item justify="space-between" alignItems="center">
         <Grid item container xs={6}>
-          <Typography variant="subtitle1" component="span">
-            <Typography variant="h6" component="span">
-              {state.products.length}
-            </Typography>{" "}
-            Items matches Criteria
+          <Typography variant="subtitle2" component="span">
+            {state.products.length === 0
+              ? "Sorry, but we coul'nt find any products that matches your search criteria"
+              : `${state.products.length} Items found`}
           </Typography>
         </Grid>
         <Grid item container xs={6} justify="flex-end">

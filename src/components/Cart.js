@@ -3,6 +3,7 @@ import { makeStyles, Button, Container, Typography } from "@material-ui/core";
 import { CartHeading } from "./CartHeading";
 import { CartProduct } from "./CartProduct";
 import { useCart } from "../contexts/CartContext";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -25,16 +26,15 @@ const useStyles = makeStyles({
 
 export const Cart = () => {
   const classes = useStyles();
-  const { cartItems } = useCart();
-  console.log(cartItems);
-
+  const { cartItems, subTotal } = useCart();
+  const history = useHistory();
   const b = cartItems.length === 0 ? false : true;
 
   switch (b) {
     case true:
       return (
         <Container className={classes.root}>
-          <CartHeading />
+          <CartHeading totalprice={subTotal} itemsquantity={cartItems.length} />
           {cartItems.map((product, i) => {
             const { id, image, price, title, quantity } = product;
             return (
@@ -66,16 +66,8 @@ export const Cart = () => {
       return (
         <Container className={classes.emptyCartContainer}>
           <Typography variant="subtitle2" align="center">
-            Cart is Empty
+            You have no Items in Cart
           </Typography>
-          <Button
-            size="large"
-            variant="outlined"
-            color="secondary"
-            className={classes.buttonStyles}
-          >
-            Browse Products
-          </Button>
         </Container>
       );
   }

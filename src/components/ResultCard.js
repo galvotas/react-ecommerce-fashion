@@ -8,6 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useCart } from "../contexts/CartContext";
+import { checkIfInCart } from "../actions/checkIfInCart";
 
 const useStyles = makeStyles({
   root: {
@@ -68,8 +69,9 @@ export const ResultCard = ({
           color="primary"
           variant="outlined"
           onClick={() => addToCart(product)}
+          disabled={checkIfInCart(cartItems, productid) ? true : false}
         >
-          ADD TO CART
+          {checkIfInCart(cartItems, productid) ? "IN CART" : "ADD TO CART"}
         </Button>
       </CardActions>
     </Card>

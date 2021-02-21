@@ -8,6 +8,7 @@ import {
   CardMedia,
 } from "@material-ui/core";
 import { useCart } from "../contexts/CartContext";
+import { checkIfInCart } from "../actions/checkIfInCart";
 
 const useStyles = makeStyles({
   root: {
@@ -39,7 +40,7 @@ export const SingleProduct = ({
   productprice,
 }) => {
   const classes = useStyles();
-  const { dispatch } = useCart();
+  const { dispatch, cartItems } = useCart();
   const addToCart = (product) => {
     dispatch({ type: "ADD_TO_CART", product });
   };
@@ -79,8 +80,11 @@ export const SingleProduct = ({
             variant="contained"
             color="primary"
             onClick={() => addToCart(product)}
+            disabled={checkIfInCart(cartItems, product.id) ? true : false}
           >
-            ADD TO CART
+            {checkIfInCart(cartItems, product.id)
+              ? "ALREADY IN CART"
+              : "ADD TO CART"}
           </Button>
         </Grid>
       </Grid>

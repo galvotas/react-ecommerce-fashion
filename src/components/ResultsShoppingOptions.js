@@ -99,7 +99,7 @@ export const ResultsShoppingOptions = () => {
         )}
         {choosenPrice && (
           <Typography
-            variant="body3"
+            variant="body1"
             className={classes.filters}
           >{`$${choosenPrice.a} - $${choosenPrice.b}`}</Typography>
         )}

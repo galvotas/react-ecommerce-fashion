@@ -1,5 +1,10 @@
-import React, { useReducer, createContext, useContext } from "react";
-import { products } from "../apis/products";
+import React, {
+  useReducer,
+  useState,
+  createContext,
+  useContext,
+  useEffect,
+} from "react";
 
 export const CartItemsContext = createContext();
 
@@ -39,11 +44,15 @@ const reducer = (state, action) => {
 
 export const CartContext = ({ children }) => {
   const [cartItems, dispatch] = useReducer(reducer, initialState);
+  const [subTotal, setSubTotal] = useState();
 
-  console.log(cartItems);
+  useEffect(() => {
+    const total = cartItems.reduce((a, b) => a + b.price * b.quantity, 0);
+    setSubTotal(total.toFixed(2));
+  });
 
   return (
-    <CartItemsContext.Provider value={{ dispatch, cartItems }}>
+    <CartItemsContext.Provider value={{ dispatch, cartItems, subTotal }}>
       {children}
     </CartItemsContext.Provider>
   );
