@@ -60,7 +60,7 @@ export const ResultsShoppingOptions = () => {
   };
 
   return (
-    <Grid container item xs={12} md={3} direction="column" spacing={2}>
+    <Grid container item xs={12} md={6} direction="column" spacing={2}>
       <Grid item xs={12} container>
         <ShoppingFilterBy filteroption="Price" />
         {priceRanges[0].options.map((op, i) => {

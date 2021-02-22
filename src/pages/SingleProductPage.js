@@ -3,8 +3,7 @@ import { Navigation } from "../components/Navigation";
 import { ResultsHeader } from "../components/ResultsHeader";
 import { SingleProduct } from "../components/SingleProduct";
 import { useLocation } from "react-router-dom";
-import { products } from "../apis/products";
-
+import { Footer } from "../components/Footer";
 export const SingleProductPage = () => {
   const location = useLocation();
   const [product] = useState(location.state.pr);
@@ -20,6 +19,7 @@ export const SingleProductPage = () => {
         productdesc={product.description}
         productprice={product.price}
       />
+      <Footer />
     </>
   );
 };

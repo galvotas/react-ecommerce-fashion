@@ -1,16 +1,15 @@
 import React from "react";
 import { Navigation } from "../components/Navigation";
 import { ResultsHeader } from "../components/ResultsHeader";
-import { ResultsWrapper } from "../components/ResultsWrapper";
 import { Footer } from "../components/Footer";
+import { FavoriteProducts } from "../components/FavoriteProducts";
 
-export const Productspage = () => {
+export const Favoritespage = () => {
   return (
     <>
       <Navigation />
-      <ResultsHeader maintext="OUR PRODUCTS" />
-      <ResultsWrapper />
-
+      <ResultsHeader maintext="FAVOURITES" />
+      <FavoriteProducts />
       <Footer />
     </>
   );

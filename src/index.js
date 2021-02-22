@@ -4,15 +4,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ResultsContext } from "./contexts/ResultsContext";
 import { CartContext } from "./contexts/CartContext";
+import { FavoritesContext } from "./contexts/FavoritesContext";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <FavoritesContext>
     <CartContext>
       <ResultsContext>
         <App />
       </ResultsContext>
     </CartContext>
-  </React.StrictMode>,
+  </FavoritesContext>,
   document.getElementById("root")
 );
 

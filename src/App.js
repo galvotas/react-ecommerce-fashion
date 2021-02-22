@@ -4,6 +4,7 @@ import { Homepage } from "./pages/Homepage";
 import { Productspage } from "./pages/Productspage";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { SingleProductPage } from "./pages/SingleProductPage";
+import { Favoritespage } from "./pages/Favoritespage";
 
 const outerTheme = createMuiTheme({
   palette: {
@@ -27,6 +28,7 @@ function App() {
           component={SingleProductPage}
           exact
         />
+        <Route path="/favourite products" component={Favoritespage} exact />
       </Router>
     </ThemeProvider>
   );

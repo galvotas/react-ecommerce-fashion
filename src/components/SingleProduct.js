@@ -6,9 +6,15 @@ import {
   Button,
   makeStyles,
   CardMedia,
+  IconButton,
 } from "@material-ui/core";
 import { useCart } from "../contexts/CartContext";
 import { checkIfInCart } from "../actions/checkIfInCart";
+import { CgArrowLongLeft } from "react-icons/cg";
+import { useHistory } from "react-router-dom";
+import { AiFillHeart } from "react-icons/ai";
+import { marginer } from "../actions/marginer";
+import { useFavoriteProducts } from "../contexts/FavoritesContext";
 
 const useStyles = makeStyles({
   root: {
@@ -30,6 +36,10 @@ const useStyles = makeStyles({
   price: {
     marginBottom: "1rem",
   },
+  arrowBtn: {
+    maxWidth: "fit-content",
+    marginTop: "0.3rem",
+  },
 });
 
 export const SingleProduct = ({
@@ -41,8 +51,18 @@ export const SingleProduct = ({
 }) => {
   const classes = useStyles();
   const { dispatch, cartItems } = useCart();
+  const { dispatchFavs } = useFavoriteProducts();
+
+  const history = useHistory();
   const addToCart = (product) => {
     dispatch({ type: "ADD_TO_CART", product });
+  };
+
+  const addToFavs = (product) => {
+    dispatchFavs({
+      type: "ADD_TO_FAVORITES",
+      product,
+    });
   };
   return (
     <Container
@@ -60,6 +80,7 @@ export const SingleProduct = ({
         <Grid container item xs={12} md={6} direction="column">
           <Grid item>
             <Typography variant="h4">{producttitle}</Typography>
+
             <Typography
               variant="caption"
               display="block"
@@ -72,6 +93,7 @@ export const SingleProduct = ({
           <Typography variant="body2" className={classes.productDescription}>
             {productdesc}
           </Typography>
+
           <Typography variant="subtitle2" className={classes.price}>
             ${productprice.toFixed(2)}
           </Typography>
@@ -82,10 +104,27 @@ export const SingleProduct = ({
             onClick={() => addToCart(product)}
             disabled={checkIfInCart(cartItems, product.id) ? true : false}
           >
-            {checkIfInCart(cartItems, product.id)
-              ? "ALREADY IN CART"
-              : "ADD TO CART"}
+            {checkIfInCart(cartItems, product.id) ? "IN CART" : "ADD TO CART"}
           </Button>
+
+          <Grid
+            item
+            container
+            justify="space-between"
+            alignItems="center"
+            style={marginer("1rem")}
+          >
+            <IconButton
+              className={classes.arrowBtn}
+              color="primary"
+              onClick={() => history.goBack()}
+            >
+              <CgArrowLongLeft />
+            </IconButton>
+            <IconButton onClick={() => addToFavs(product)}>
+              <AiFillHeart />
+            </IconButton>
+          </Grid>
         </Grid>
       </Grid>
     </Container>

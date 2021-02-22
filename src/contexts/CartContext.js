@@ -43,13 +43,20 @@ const reducer = (state, action) => {
 };
 
 export const CartContext = ({ children }) => {
-  const [cartItems, dispatch] = useReducer(reducer, initialState);
+  const [cartItems, dispatch] = useReducer(reducer, initialState, () => {
+    const localData = localStorage.getItem("cartItems");
+    return localData ? JSON.parse(localData) : [];
+  });
   const [subTotal, setSubTotal] = useState();
 
   useEffect(() => {
     const total = cartItems.reduce((a, b) => a + b.price * b.quantity, 0);
     setSubTotal(total.toFixed(2));
   });
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   return (
     <CartItemsContext.Provider value={{ dispatch, cartItems, subTotal }}>

@@ -22,6 +22,8 @@ import { MdFavorite } from "react-icons/md";
 import { TemporaryDrawer } from "./TemporaryDrawer";
 import { MdExpandMore } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useCart } from "../contexts/CartContext";
+import { useFavoriteProducts } from "../contexts/FavoritesContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,10 +47,10 @@ const useStyles = makeStyles((theme) => ({
 
 export const Navigation = () => {
   const classes = useStyles();
-
   const [open, setOpen] = useState(false);
-
   const [openDrawer, setOpenDrawer] = useState(false);
+  const { cartItems } = useCart();
+  const { favprods } = useFavoriteProducts();
 
   const handleDrawer = () => {
     setOpenDrawer(!openDrawer);
@@ -77,6 +79,7 @@ export const Navigation = () => {
 
   // return focus to the button when we transitioned from !open -> open
   const prevOpen = useRef(open);
+
   useEffect(() => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current.focus();
@@ -91,26 +94,30 @@ export const Navigation = () => {
         <Toolbar>
           <Grid container justify="space-between" alignItems="center">
             <Grid item>
-              <Typography color="primary" variant="h5">
-                LOGO
-              </Typography>
+              <Link to="/">
+                <Typography color="primary" variant="h5">
+                  LOGO
+                </Typography>
+              </Link>
             </Grid>
             <Grid item>
               <Link to="/products">
-                <Button color="secondary" size="small" variant="outlined">
+                <Button color="secondary" size="medium" variant="outlined">
                   Products
                 </Button>
               </Link>
               <IconButton onClick={handleDrawer}>
-                <Badge badgeContent={1} color="secondary">
+                <Badge badgeContent={cartItems.length} color="secondary">
                   <FaShoppingCart size={20} color="primary" />
                 </Badge>
               </IconButton>
-              <IconButton>
-                <Badge badgeContent={1} color="secondary">
-                  <MdFavorite size={20} color="primary" />
-                </Badge>
-              </IconButton>
+              <Link to="/favourite products">
+                <IconButton>
+                  <Badge badgeContent={favprods.length} color="secondary">
+                    <MdFavorite size={20} color="primary" />
+                  </Badge>
+                </IconButton>
+              </Link>
               <IconButton
                 ref={anchorRef}
                 aria-controls={open ? "menu-list-grow" : undefined}
