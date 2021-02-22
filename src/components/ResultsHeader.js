@@ -36,7 +36,6 @@ export const ResultsHeader = ({ maintext, children }) => {
   const classes = useStyles();
   return (
     <Grid
-      maintext={maintext}
       container
       className={classes.root}
       alignItems="center"

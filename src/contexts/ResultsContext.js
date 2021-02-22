@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, createContext, useContext } from "react";
+import React, { useReducer, createContext, useContext } from "react";
 import { products } from "../apis/products";
 import { isEmpty } from "../actions/objectIsEmpty";
 
@@ -48,11 +48,12 @@ const reducer = (state, action) => {
             return (
               !(a.price < parseInt(action.prices.a)) &&
               !(a.price > parseInt(action.prices.b)) &&
-              a.category == state.category.toLowerCase()
+              a.category === state.category.toLowerCase()
             );
           }),
         };
       }
+      break;
     case "FILTER_BY_CATEGORY":
       if (isEmpty(state.price)) {
         return {
@@ -75,6 +76,7 @@ const reducer = (state, action) => {
           }),
         };
       }
+      break;
     case "CLEAR_FILTERS":
       return { ...state, products, price: "", category: "" };
     default:

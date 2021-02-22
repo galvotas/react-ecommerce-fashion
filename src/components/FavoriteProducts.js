@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Container, Grid, IconButton, Typography } from "@material-ui/core";
 import { ResultCard } from "./ResultCard";
-import { products } from "../apis/products";
 import { useHistory } from "react-router-dom";
 import { marginer } from "../actions/marginer";
 import { ImHeartBroken } from "react-icons/im";

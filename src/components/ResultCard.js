@@ -1,7 +1,6 @@
 import React from "react";
 import {
   makeStyles,
-  IconButton,
   Card,
   CardActionArea,
   CardActions,
@@ -41,15 +40,7 @@ export const ResultCard = ({
   };
 
   return (
-    <Card
-      product={product}
-      onClick={onClick}
-      productimg={productimg}
-      producttitle={producttitle}
-      productprice={productprice}
-      productid={productid}
-      className={classes.root}
-    >
+    <Card onClick={onClick} className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.cardMedia}

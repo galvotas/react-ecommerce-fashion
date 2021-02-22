@@ -18,15 +18,7 @@ export const useStyles = makeStyles({
 export const CartHeading = ({ totalprice, itemsquantity }) => {
   const classes = useStyles();
   return (
-    <Grid
-      totalprice={totalprice}
-      itemsquantity={itemsquantity}
-      className={classes.root}
-      container
-      item
-      sm
-      justify="space-between"
-    >
+    <Grid className={classes.root} container item sm justify="space-between">
       <Grid item>
         <Typography variant="subtitle2">
           {itemsquantity} Items in Cart

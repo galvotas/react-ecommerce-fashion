@@ -13,6 +13,7 @@ const reducer = (state, action) => {
       } else {
         return [...state];
       }
+
     case "REMOVE_FROM_FAVORITES":
       return [...state.filter((a) => a.id !== action.pr.id)];
     case "RENEW_STATE":

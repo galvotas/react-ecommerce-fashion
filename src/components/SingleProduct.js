@@ -65,14 +65,7 @@ export const SingleProduct = ({
     });
   };
   return (
-    <Container
-      product={product}
-      productimg={productimg}
-      productdesc={productdesc}
-      producttitle={producttitle}
-      productprice={productprice}
-      className={classes.root}
-    >
+    <Container className={classes.root}>
       <Grid container spacing={4}>
         <Grid item xs={12} md={6}>
           <CardMedia className={classes.productImage} image={productimg} />

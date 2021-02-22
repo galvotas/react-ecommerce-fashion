@@ -29,16 +29,7 @@ export const CartProduct = ({
 
   const { dispatch } = useCart();
   return (
-    <Grid
-      quantity={quantity}
-      productid={productid}
-      backgroundimg={backgroundimg}
-      producttitle={producttitle}
-      productprice={productprice}
-      className={classes.root}
-      container
-      justify="space-between"
-    >
+    <Grid className={classes.root} container justify="space-between">
       <Grid
         item
         xs={3}
